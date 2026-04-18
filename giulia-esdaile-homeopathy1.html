@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giulia Esdaile Homeopathy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    :root {
+      --dark: #0F291E;
+      --moss: #29503C;
+      --sage: #C2C7AE;
+      --cream: #F2EFE6;
+      --petal: #E8C4CF;
+      --text: #111827;
+      --muted: #5C6D55;
+      --accent: #9B4F50;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .noise-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+    }
+    .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+    @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+    .font-heading { font-family: 'Cormorant Garamond', serif; }
+    .font-data { font-family: 'IBM Plex Mono', monospace; }
+    .magnetic { position: relative; overflow: hidden; }
+    .hero-bg {
+      background-image: linear-gradient(180deg, rgba(15,41,30,0.82), rgba(15,41,30,0.18)), url('flowers.gif');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(15,41,30,0.45);
+      pointer-events: none;
+    }
+    .section-panel {
+      border-radius: 2rem;
+      border: 1px solid rgba(15,41,30,0.08);
+      background: white;
+      box-shadow: 0 30px 80px rgba(15,41,30,0.08);
+    }
+    .protocol-panel {
+      border-radius: 3rem;
+      border: 1px solid rgba(15,41,30,0.08);
+      background: white;
+    }
+    .reveal-text {
+      overflow: hidden;
+    }
+    .reveal-text span {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+    .nav-blur {
+      backdrop-filter: blur(18px);
+      background: rgba(242,239,230,0.72);
+    }
+    .tag-pill {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      color: #0F291E;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .hero-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: #C57D7C;
+    }
+    .footer-links a { color: inherit; text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+    @media (max-width: 768px) {
+      .hero-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .hero-subtitle { font-size: clamp(1rem, 4vw, 1.2rem); }
+    }
+  </style>
+</head>
+<body class="relative selection:bg-[#C4A3A6] selection:text-[#0F291E]">
+
+  <svg class="noise-layer">
+    <filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"></rect>
+  </svg>
+
+  <nav id="navbar" class="fixed top-6 left-1/2 z-50 flex w-[90%] max-w-5xl -translate-x-1/2 items-center justify-between rounded-full px-6 py-4 text-[#1A1A1A] transition-all duration-500 shadow-xl bg-white/80 backdrop-blur-sm">
+    <div class="font-heading text-lg font-semibold tracking-tighter uppercase">Giulia Esdaile</div>
+    <div class="hidden items-center gap-8 text-sm font-medium tracking-tight md:flex">
+      <a href="#about" class="nav-link hover:text-[#9B4F50] transition-colors">About</a>
+      <a href="#areas" class="nav-link hover:text-[#9B4F50] transition-colors">Practice</a>
+      <a href="#pricing" class="nav-link hover:text-[#9B4F50] transition-colors">Fees</a>
+      <a href="#contact" class="nav-link hover:text-[#9B4F50] transition-colors">Contact</a>
+    </div>
+    <button class="magnetic group relative overflow-hidden rounded-full bg-[#9B4F50] px-6 py-2.5 text-sm font-medium text-[#F2EFE6] shadow-lg">
+      <span class="relative z-10 block transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-y-full">Book Now</span>
+      <span class="absolute inset-0 z-10 flex h-full w-full translate-y-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-y-0">Contact</span>
+      <span class="absolute inset-0 z-0 h-full w-full bg-[#0F291E] transition-transform duration-500"></span>
+    </button>
+  </nav>
+
+  <section id="hero" class="relative flex h-[100dvh] w-full flex-col justify-end bg-cover bg-center bg-no-repeat pb-16 pt-32 hero-bg">
+    <div class="relative z-10 w-full px-6 md:px-16 lg:w-2/3">
+      <p class="hero-caption mb-6">Classical Homeopathy · Muswell Hill · North London</p>
+      <h1 class="hero-title font-heading text-[clamp(3rem,7vw,6rem)] tracking-tight leading-none text-[#F2EFE6]">Giulia Esdaile Homeopathy</h1>
+      <p class="hero-subtitle mt-8 max-w-2xl text-base text-[#F2EFE6]/85 font-medium">Homeopathy that listens to your body, mind and emotions — tailored to your unique history, symptoms and vitality.</p>
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <button class="magnetic group relative overflow-hidden rounded-full bg-[#0F291E] px-8 py-4 text-sm font-medium text-[#F2EFE6] shadow-lg">
+          <span class="relative z-10 flex items-center gap-2">Book a Consultation <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon></span>
+          <span class="absolute inset-0 z-0 h-full w-full translate-y-full bg-[#9B4F50] transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-y-0"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative z-20 -mt-8 rounded-t-[3rem] bg-[#F2EFE6] px-6 py-24 md:px-16 lg:px-24">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h2 class="font-heading text-3xl tracking-tight text-[#1A1A1A] md:text-5xl">A Compassionate Practice</h2>
+          <p class="mt-4 max-w-sm text-sm text-[#1A1A1A]/70">Personal, classical homeopathy for chronic conditions, emotional wellbeing and whole-person vitality.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="section-panel p-8">
+          <iconify-icon icon="solar:heart-pulse-linear" class="text-3xl text-[#9B4F50]"></iconify-icon>
+          <h3 class="font-heading mt-6 text-xl tracking-tight text-[#1A1A1A]">Holistic Case Taking</h3>
+          <p class="mt-4 text-sm text-[#5C6D55]/90">Every consultation explores your physical symptoms, emotions, lifestyle and health history.</p>
+        </div>
+        <div class="section-panel p-8">
+          <iconify-icon icon="solar:leaf-linear" class="text-3xl text-[#9B4F50]"></iconify-icon>
+          <h3 class="font-heading mt-6 text-xl tracking-tight text-[#1A1A1A]">Individual Remedies</h3>
+          <p class="mt-4 text-sm text-[#5C6D55]/90">I prescribe classical remedies that match your unique symptom profile, not just the diagnosis.</p>
+        </div>
+        <div class="section-panel p-8">
+          <iconify-icon icon="solar:shield-check-linear" class="text-3xl text-[#9B4F50]"></iconify-icon>
+          <h3 class="font-heading mt-6 text-xl tracking-tight text-[#1A1A1A]">Gentle Support</h3>
+          <p class="mt-4 text-sm text-[#5C6D55]/90">A natural, gentle alternative to manage chronic conditions and support everyday resilience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="relative bg-[#F2EFE6] px-6 py-24 md:px-16 lg:px-24">
+    <div class="mx-auto max-w-7xl grid gap-16 lg:grid-cols-2 items-center">
+      <div class="rounded-[2rem] overflow-hidden bg-[#0F291E] shadow-2xl">
+        <img src="rose.gif" alt="Giulia Esdaile portrait" class="w-full h-full object-cover object-center" />
+      </div>
+      <div>
+        <span class="hero-caption">About Giulia</span>
+        <h2 class="font-heading mt-6 text-4xl tracking-tight text-[#1A1A1A] md:text-5xl">Giulia Esdaile</h2>
+        <p class="mt-6 text-base text-[#5C6D55] leading-relaxed">BSc (Hons) LicACH, RSHom. I studied conventional medicines at King's College London and trained in classical homeopathy at the LCCH and ACH.</p>
+        <div class="mt-6 space-y-4 text-[#5C6D55] text-sm leading-relaxed">
+          <p>In 2004 I founded my practice in North London, offering personalised homeopathic care with a focus on the whole person. I am a registered member of the Society of Homeopaths and work with both acute and chronic presentations.</p>
+          <p>Homeopathy is not a one-size-fits-all therapy; it works by matching the remedy to your unique pattern of symptoms, emotions and energy.</p>
+        </div>
+        <div class="mt-8 rounded-[1.5rem] bg-[#0F291E] p-6 text-white shadow-xl">
+          <div class="font-heading text-sm uppercase tracking-[0.22em] text-[#CFC6B7]">Qualifications</div>
+          <div class="mt-3 text-lg">BSc Hons (Pharmacology) · LicACH · RSHom</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="areas" class="bg-[#0F291E] px-6 py-24 text-[#F2EFE6] md:px-16 lg:px-24">
+    <div class="mx-auto max-w-7xl">
+      <div class="text-center mb-16">
+        <span class="hero-caption">Areas of Practice</span>
+        <h2 class="font-heading text-4xl tracking-tight md:text-5xl">A Broad Range of Care</h2>
+      </div>
+      <div class="space-y-16">
+        <div class="section-panel p-10 bg-[#1E3B30] text-[#F2EFE6] grid gap-8 lg:grid-cols-2">
+          <div>
+            <h3 class="font-heading text-3xl">Allergies &amp; Skin</h3>
+            <p class="mt-4 text-[#D8E1D4] text-sm leading-relaxed">Hay fever, eczema, psoriasis, chronic skin sensitivity and respiratory discomfort are addressed with remedies that support immune balance and skin regeneration.</p>
+          </div>
+          <div class="grid gap-3 text-[#C8D3BF] text-sm">
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Hay Fever</span>
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Eczema</span>
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Psoriasis</span>
+          </div>
+        </div>
+        <div class="section-panel p-10 bg-[#1E3B30] text-[#F2EFE6] grid gap-8 lg:grid-cols-2">
+          <div>
+            <h3 class="font-heading text-3xl">Mind &amp; Emotions</h3>
+            <p class="mt-4 text-[#D8E1D4] text-sm leading-relaxed">Stress, anxiety, grief and low mood are addressed in the full context of your emotional life, sleep, energy and physical sensations.</p>
+          </div>
+          <div class="grid gap-3 text-[#C8D3BF] text-sm">
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Stress</span>
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Anxiety</span>
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Grief</span>
+          </div>
+        </div>
+        <div class="section-panel p-10 bg-[#1E3B30] text-[#F2EFE6] grid gap-8 lg:grid-cols-2">
+          <div>
+            <h3 class="font-heading text-3xl">Women’s Health</h3>
+            <p class="mt-4 text-[#D8E1D4] text-sm leading-relaxed">Menstrual symptoms, menopause, fertility and pregnancy support are treated with remedies tailored to each woman's life stage and background.</p>
+          </div>
+          <div class="grid gap-3 text-[#C8D3BF] text-sm">
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">PMS</span>
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Menopause</span>
+            <span class="tag-pill bg-white/5 border-white/10 text-[#F2EFE6]">Pregnancy Support</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <span class="tag-pill">Children's Health</span>
+        <span class="tag-pill">Asthma</span>
+        <span class="tag-pill">Digestive Issues</span>
+        <span class="tag-pill">Sleep Problems</span>
+        <span class="tag-pill">Recurrent Infections</span>
+        <span class="tag-pill">Behavioural Health</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="bg-[#F2EFE6] px-6 py-24 md:px-16 lg:px-24">
+    <div class="mx-auto max-w-7xl grid gap-16 lg:grid-cols-2 items-center">
+      <div>
+        <span class="hero-caption">Transparent Fees</span>
+        <h2 class="font-heading mt-6 text-4xl tracking-tight text-[#1A1A1A] md:text-5xl">Simple, straightforward consultations.</h2>
+        <p class="mt-6 text-[#5C6D55] text-sm leading-relaxed">Consultations take place in Muswell Hill, North London. Each session is unhurried, personal and tailored to your case.</p>
+      </div>
+      <div class="grid gap-6">
+        <div class="section-panel p-8">
+          <div class="font-heading text-2xl">First Consultation</div>
+          <div class="mt-4 uppercase text-xs tracking-[0.22em] text-[#9B4F50]">1 Hour · Full Case History</div>
+          <div class="mt-6 text-4xl font-semibold text-[#0F291E]">£95</div>
+        </div>
+        <div class="section-panel p-8">
+          <div class="font-heading text-2xl">Follow-Up</div>
+          <div class="mt-4 uppercase text-xs tracking-[0.22em] text-[#9B4F50]">30 Minutes · Review & Remedy</div>
+          <div class="mt-6 text-4xl font-semibold text-[#0F291E]">£65</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#0F291E] text-[#F2EFE6] px-6 py-24 md:px-16 lg:px-24">
+    <div class="mx-auto max-w-7xl text-center">
+      <span class="hero-caption">What is Homeopathy?</span>
+      <h2 class="font-heading mt-6 text-4xl tracking-tight md:text-5xl">Gentle remedies, whole-person wisdom.</h2>
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        <div class="section-panel bg-[#1E3B30] p-10 text-[#F2EFE6]">
+          <h3 class="font-heading text-2xl">Safe & Natural</h3>
+          <p class="mt-4 text-sm text-[#D8E1D4] leading-relaxed">Remedies are chosen for their ability to support your own healing energy, with minimal risk and no suppression of symptoms.</p>
+        </div>
+        <div class="section-panel bg-[#1E3B30] p-10 text-[#F2EFE6]">
+          <h3 class="font-heading text-2xl">Holistic by Design</h3>
+          <p class="mt-4 text-sm text-[#D8E1D4] leading-relaxed">The full story matters — physical, emotional and mental patterns are all part of the remedy selection.</p>
+        </div>
+        <div class="section-panel bg-[#1E3B30] p-10 text-[#F2EFE6]">
+          <h3 class="font-heading text-2xl">Personalised Care</h3>
+          <p class="mt-4 text-sm text-[#D8E1D4] leading-relaxed">Each case is unique. Remedies are matched to the individual, not just the diagnosis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="bg-[#1A1A1A] px-6 pb-12 pt-24 text-[#F2EFE6] md:px-16 lg:px-24">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-4 lg:gap-24">
+        <div class="md:col-span-2">
+          <div class="font-heading text-2xl font-semibold tracking-tighter uppercase">Giulia Esdaile</div>
+          <p class="mt-4 max-w-xs text-sm text-[#F2EFE6]/70">Classical homeopathy with a compassionate, whole-person approach from Muswell Hill, London.</p>
+          <div class="mt-12 flex items-center gap-3 rounded-full border border-[#F2EFE6]/10 bg-[#F2EFE6]/5 px-4 py-2 w-fit">
+            <span class="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+            <span class="font-data text-xs text-[#F2EFE6]/80">Available for new consultations</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-heading text-sm text-[#F2EFE6]/40 tracking-widest uppercase">Connect</h4>
+          <ul class="mt-6 flex flex-col gap-3 text-sm">
+            <li><a href="mailto:giulia@esdaile.info" class="hover:text-[#9B4F50]">giulia@esdaile.info</a></li>
+            <li><a href="tel:07956581632" class="hover:text-[#9B4F50]">07956 581 632</a></li>
+            <li><a href="#pricing" class="hover:text-[#9B4F50]">Book a consultation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading text-sm text-[#F2EFE6]/40 tracking-widest uppercase">Practice</h4>
+          <ul class="mt-6 flex flex-col gap-3 text-sm">
+            <li><a href="#about" class="hover:text-[#9B4F50]">About</a></li>
+            <li><a href="#areas" class="hover:text-[#9B4F50]">Areas of Practice</a></li>
+            <li><a href="#contact" class="hover:text-[#9B4F50]">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-24 border-t border-[#F2EFE6]/10 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[#F2EFE6]/40">
+        <p>© 2025 Giulia Esdaile Homeopathy. Muswell Hill, London N10.</p>
+        <p class="mt-2 md:mt-0 font-data">Natural, personalised care.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.create({
+        trigger: '#hero',
+        start: 'bottom 90%',
+        onEnter: () => gsap.to('#navbar', { backgroundColor: 'rgba(242,239,230,0.92)', color: '#1A1A1A', duration: 0.4 }),
+        onLeaveBack: () => gsap.to('#navbar', { backgroundColor: 'rgba(255,255,255,0.14)', color: '#1A1A1A', duration: 0.4 })
+      });
+
+      gsap.from('.hero-caption, .hero-title, .hero-subtitle, .magnetic', {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.12,
+        ease: 'power3.out'
+      });
+
+      document.querySelectorAll('.magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          gsap.to(btn, { x: x * 0.1, y: y * 0.1, duration: 0.4, ease: 'power2.out' });
+        });
+        btn.addEventListener('mouseleave', () => gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' }));
+      });
+
+      gsap.utils.toArray('.reveal-text').forEach(text => {
+        gsap.from(text, {
+          scrollTrigger: { trigger: text, start: 'top 85%' },
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out'
+        });
+      });
+
+      const panels = gsap.utils.toArray('.protocol-panel');
+      panels.forEach((panel, index) => {
+        if (!index) return;
+        gsap.to(panels[index - 1], {
+          scale: 0.94,
+          opacity: 0.35,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: panel,
+            start: 'top 80%',
+            end: 'top 20%',
+            scrub: true
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
